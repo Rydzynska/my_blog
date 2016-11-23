@@ -1,0 +1,13 @@
+*.pyc
+__pycache__
+myvenv3
+db.sqlite3
+.DS_Store
+historia
+about
+mysite.log
+env
+settings.py
+settings.pyc
+settings_dev.py
+settings_dev.pyc

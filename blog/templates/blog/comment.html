@@ -1,0 +1,23 @@
+<h3 id="comments">Comments</h3>
+
+	{% for comment in post.comment_set.all %}
+	
+	<div class="comment_post">
+		<div><img src="{{ comment.gravatar_url }}" class="gravatar"></div>
+		<div class="comment_content">
+			<div class="author"><span class="strong">{{ comment.name }}</span> says:</div>
+			<div class="date"> {{ comment.created_date }}</div>
+		    <div class="comment_text">{{ comment|linebreaks }}</div>
+		</div>
+	</div>
+	{% empty %}
+	    <p>No comments yet.</p>
+	{% endfor %}
+
+<h5>Leave a reply</h5>
+<p><span class="strong">All</span> fields are required. Your e-mail address will <span class="strong">not</span> be published.</p>
+<form method="post">
+	{% csrf_token %}
+    {{ form.as_p }}
+<input class="submit" type="submit" value="Post Comment">
+</form>

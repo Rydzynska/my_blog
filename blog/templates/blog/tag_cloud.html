@@ -1,0 +1,7 @@
+<aside id="cloud">    
+    {% for tag in tags %}
+        <a href="{{ tag.get_absolute_url }}" class="button_cloud"> {{ tag }} ({{ tag.post_count }})</a>
+    {% empty %}
+        <p>No tags added.</p>
+    {% endfor %}
+</aside>

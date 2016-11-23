@@ -1,0 +1,11 @@
+
+    <ul class="right_menu">
+    {% for category in categories %}
+        <li>
+            <a href="{{ category.get_absolute_url }}" class="aside_link">{{ category }} ({{ category.post_count }})</a>
+        </li>
+    {% empty %}
+        <p>No categories added.</p>
+    {% endfor %}
+    </ul>
+

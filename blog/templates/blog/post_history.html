@@ -1,0 +1,7 @@
+<ul class="right_menu">
+    {% for post in posts %}
+        <li id="history_link"><a href="{{ post.get_absolute_url }}" class="aside_link">{{ post.title }}</a></li>
+    {% empty %}
+        <p>No recent posts.</p>
+    {% endfor %}
+

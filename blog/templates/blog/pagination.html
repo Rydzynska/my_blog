@@ -1,0 +1,25 @@
+{% if is_paginated %}
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li>
+          <a href="?page={{ page_obj.previous_page_number }}" class="comment_link">Newer Posts</a></li>
+      {% else %}
+        <li class="disabled">
+          <a href="#" class="comment_link">Newer Posts</a></li>
+      {% endif %}
+
+      {% for page in paginator.page_range %}
+        <li {% if page == page_obj.number %} class="active" {% endif %}>
+          <a href="?page={{ page }}" class="comment_link">{{ page }}</a>
+        </li>
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <li>
+          <a href="?page={{ page_obj.next_page_number }}" class="comment_link">Older Posts</a></li>
+      {% else %}
+        <li {% if not page_obj.has_next %}class="disabled"{% endif %}>
+          <a href="#" class="comment_link">Older Posts</a></li>
+      {% endif %}
+    </ul>
+{% endif %}

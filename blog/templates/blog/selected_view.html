@@ -1,0 +1,34 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in post_list %}
+    <div class="post">
+            <h2 class="post_title"><a href="{{ post.get_absolute_url }}" class="title_link">{{ post.title }}</a></h2>
+            <div class="subheader">
+                <time>{{ post.published_date|date }}</time><span class="slash">/</span>
+            
+                <span>Category: <a href="{{ post.category.get_absolute_url }}" >{{ post.category }}</a><span class="slash">/</span></span>
+
+                <a href="{{ post.get_absolute_url }}#comments" class="comment" > Comments: {{ post.comment_count }}</a>
+            </div>
+            {% autoescape off %}
+            {{ post.intro|linebreaks }}
+            {% endautoescape %}
+            <div class="continue"><a href="{{ post.get_absolute_url }}">Keep reading »</a></div>
+            
+            <div class="post_tags"><h6>Tags:</h6>
+            {% for tag in post.tags.all %}
+                <a href="{{ tag.get_absolute_url }}" class="button_tag"> {{ tag }}</a>
+            {% empty %}
+                <p>No tags added.</p>
+            {% endfor %}
+            </div>
+    {% empty %}
+        <p>No blog posts added.</p>
+    {% endfor %}
+    <a href="{{ '/' }}" class="button">All Posts</a>
+
+    {% include 'blog/pagination.html'%}
+    </div>
+
+{% endblock content %}
